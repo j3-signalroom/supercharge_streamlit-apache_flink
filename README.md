@@ -8,7 +8,7 @@ The exciting part is that after running all your Flink applications, the data no
 <!-- toc -->
 + [1.0 Prerequisite](#10-prerequisite)
 + [2.0 Power up the Apache Flink Docker containers](#20-power-up-the-apache-flink-docker-containers)
-+ [3.0  Unleash the Full Power of Flink to Bring Your Data Visualizations to Life!](#30-supercharge-your-streamlit-visualizations)
++ [3.0 Supercharge Your Streamlit Visualizations](#30-supercharge-your-streamlit-visualizations)
     - [3.1 Special Mention](#31-special-mention)
 + [4.0 Resources](#40-resources)
 <!-- tocstop -->
