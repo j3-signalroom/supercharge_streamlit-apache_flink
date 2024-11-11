@@ -45,7 +45,7 @@ scripts/run-flink-locally.sh on --profile=<AWS_SSO_PROFILE_NAME>
 > `<ACTIVATE_DOCKER_CONTAINER>`|`on` to turn on Flink locally, otherwise `off` to turn Flink off.
 > `<AWS_SSO_PROFILE_NAME>`|your AWS SSO profile name for your AWS infrastructue that host your AWS Secrets Manager.
 > `<CHIP>`|if you are running on a Mac with M1, M2, or M3 chip, use `arm64`.  Otherwise, use `amd64`.
-> `<AWS_S3_BUCKET_NAME>`|can specify the name of the AWS S3 bucket used to store Apache Iceberg files.
+> `<AWS_S3_BUCKET_NAME>`|specify the name of the AWS S3 bucket used to store Apache Iceberg files.
 
 To learn more about this script, click [here](.blog/run-flink-locally-script-explanation.md).
 
@@ -99,8 +99,6 @@ Curious to learn more about Astral's `uv`? Check these out:
 
 [PyFlink API Reference](https://nightlies.apache.org/flink/flink-docs-release-1.20/api/python/reference/index.html)
 
-[Apache Flink® Table API on Confluent Cloud - Examples](https://github.com/confluentinc/flink-table-api-python-examples)
+[Apache Iceberg in Action with Apache Flink using Python](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/.blog/apache-iceberg-in-action-with-apache-flink-using-python.md)
 
-[How to create a User-Defined Table Function (UDTF) in PyFlink to fetch data from an external source for your Flink App?](.blog/how-create-a-pyflink-udtf.md)
-
-[Apache Iceberg in Action with Apache Flink using Python](.blog/apache-iceberg-in-action-with-apache-flink-using-python.md)
+[Streamlit Documentation](https://docs.streamlit.io/)
