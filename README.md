@@ -17,6 +17,8 @@ The exciting part is that after running all your Flink applications, the data no
 ## 1.0 Prerequisite
 Start by running the Java-based Flink application [`DataGeneratorApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/java/README.md) to kickstart the data pipeline. This app powers up your Kafka topics—`airline.skyone` and `airline.sunset`—by generating sample records that fuel the rest of the process. Once the data flows into Kafka, launch the [`FlightImporterApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/python/README.md) Flink application. This crucial step reads the enriched data from Kafka and writes it into the `apache_kickstarter.airlines.flight` Apache Iceberg table, seamlessly preparing your data for advanced analytics and insight generation. Get ready to see the magic of Flink in action!
 
+![datageneratorapp-flightimporterapp](.blog/images/datageneratorapp-flightimporterapp.png)
+
 ## 2.0 Power up the Apache Flink Docker containers
 
 > **Prerequisite**

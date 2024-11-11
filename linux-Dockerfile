@@ -63,7 +63,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-venv \
     zip \
-    gradle \
     nano
 
 # Download JAR files for Python
@@ -97,16 +96,6 @@ ENV PATH="/usr/local/Python-${PYTHON_VERSION_WITH_PATCH}:${PATH}"
 # Set JAVA_HOME
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64
 
-# Copy Java files to the container
-COPY java /opt/flink/java_apps/
-
-# Set the working directory to the Java files
-WORKDIR /opt/flink/java_apps
-
-# Build Java files
-RUN ./gradlew app:clean
-RUN ./gradlew app:build
-
 # Upgrade pip
 RUN python${PYTHON_VERSION} -m pip install --upgrade pip
 
@@ -130,8 +119,8 @@ WORKDIR /opt/flink/python_apps
 RUN uv sync --frozen
 
 # Zip Python files
-WORKDIR /opt/flink/python_apps/src/kickstarter
-RUN zip -r python_files.zip * -x '__pycache__/*' -x 'helper/__pycache__/*' -x 'model/__pycache__/*'
+WORKDIR /opt/flink/python_apps/src/supercharge_streamlit
+RUN zip -r python_files.zip * -x '__pycache__/*' -x 'helper/__pycache__/*'
 
 # Set the entrypoint to Flink's entrypoint script
 CMD ["./bin/start-cluster.sh"]
