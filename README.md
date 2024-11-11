@@ -50,6 +50,14 @@ scripts/run-flink-locally.sh on --profile=<AWS_SSO_PROFILE_NAME>
 To learn more about this script, click [here](.blog/run-flink-locally-script-explanation.md).
 
 ## 3.0 Supercharge Your Streamlit Visualizations
+To access the Flink JobManager (`supercharge_streamlit-apache_flink-jobmanager-1`) container, open the interactive shell by running:
+
+```bash
+docker exec -it -w /opt/flink/python_apps/src supercharge_streamlit-apache_flink-jobmanager-1 /bin/bash
+```
+
+Jump right into the container and take charge! You’ll have full control to run commands, explore the file system, and tackle any tasks you need. You’ll land directly in the `/opt/flink/python_apps/src` directory—this is the headquarters for the Python script in the repo.
+
 To illustrate, I created a Streamlit script that queries the `apache_kickstarter.airlines.flight` Apache Iceberg Table, harnessing Flink SQL to extract valuable insights. These insights are then brought to life through a Streamlit dashboard, transforming raw data into an accessible, visual experience.
 
 Here you go, run this in the docker container terminal command line:
