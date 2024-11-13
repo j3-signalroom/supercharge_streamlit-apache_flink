@@ -5,8 +5,8 @@ The format is base on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), 
 
 ## [0.02.00.000] - 2024-11-13
 ### Changed
-- Issue [#4](https://github.com/j3-signalroom/apache_flink-kickstarter/issues/4).
-- Issue [#6](https://github.com/j3-signalroom/apache_flink-kickstarter/issues/6).
+- Issue [#4](https://github.com/j3-signalroom/supercharge_streamlit-apache_flink/issues/4).
+- Issue [#6](https://github.com/j3-signalroom/supercharge_streamlit-apache_flink/issues/6).
 
 ## [0.01.00.000] - 2024-11-11
 ### Added
