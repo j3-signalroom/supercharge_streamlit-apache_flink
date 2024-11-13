@@ -6,7 +6,6 @@ import pandas as pd
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 import plotly.express as px
-import altair as alt
 
 from helper.utilities import load_catalog, load_database
 

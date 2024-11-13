@@ -63,9 +63,9 @@ To illustrate, I created a Streamlit script that queries the `apache_kickstarter
 Here you go, run this in the docker container terminal command line:
 
 ```bash
-uv run streamlit run supercharge_streamlit/streamlit_with_local_flink.py -- --aws-s3-bucket <AWS_S3_BUCKET> --aws-region <AWS_REGION_NAME>
+uv run streamlit run supercharge_streamlit/app.py -- --aws-s3-bucket <AWS_S3_BUCKET> --aws-region <AWS_REGION_NAME>
 ```
-> _Notice the extra `--` between streamlit run `supercharge_streamlit/streamlit_with_local_flink.py` and the actual script arguments.  This is necessary to pass arguments to the Streamlit script without causing conflicts with Streamlit's own CLI options._
+> _Notice the extra `--` between streamlit run `supercharge_streamlit/app.py` and the actual script arguments.  This is necessary to pass arguments to the Streamlit script without causing conflicts with Streamlit's own CLI options._
 
 When you run the script, for instance, it produces the following output:
 
