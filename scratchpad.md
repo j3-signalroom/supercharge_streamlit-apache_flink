@@ -10,5 +10,5 @@ scripts/run-flink-locally.sh off
 ### 2.0 Run Python-based Flink Apps
 ```bash
 docker exec -it -w /opt/flink/python_apps/src supercharge_streamlit-apache_flink-jobmanager-1 /bin/bash
-uv run streamlit run supercharge_streamlit/streamlit_with_local_flink.py -- --aws-s3-bucket flink_kickstarter --aws-region us-east-1
+uv run streamlit run supercharge_streamlit/app.py -- --aws-s3-bucket flink_kickstarter --aws-region us-east-1
 ```
