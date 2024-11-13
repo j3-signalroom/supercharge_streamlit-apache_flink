@@ -1,25 +1,23 @@
 # Supercharge Your Streamlit Visualizations: Batch Processing Iceberg Data with Apache Flink
-The exciting part is that after running all your Flink applications, the data now flows seamlessly into your Kafka Topics and Apache Iceberg Tables. But data alone doesn’t tell the story—it’s time to share those insights with the world! One fantastic way to do that is with Streamlit, which allows you to easily create interactive visualizations. Streamlit is intuitive, powerful, and designed with Python developers in mind, making it a breeze to turn raw data into captivating dashboards. 😉
+After you have all your fun running the Java-based Flink application [`DataGeneratorApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/java/README.md) to kickstart the data pipeline. This app powers up your Kafka topics—`airline.skyone` and `airline.sunset`—by generating sample records that fuel the rest of the process. Once the data flows into Kafka, launch the [`FlightImporterApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/python/README.md) Flink application. This crucial step reads the enriched data from Kafka and writes it into the `apache_kickstarter.airlines.flight` Apache Iceberg table, seamlessly preparing your data for advanced analytics and insight generation.
+
+![datageneratorapp-flightimporterapp](.blog/images/datageneratorapp-flightimporterapp.png)
+
+Get ready to see the magic of Flink in action! Now, it's time to share those insights with the world! One fantastic way to do that is with [Streamlit](https://streamlit.io/), which allows you to easily create interactive visualizations. Streamlit is intuitive, powerful, and designed with Python developers in mind, making it a breeze to turn raw data into captivating dashboards. 😉  
 
 ![iceberg-flink-streamlit-drawing](.blog/images/iceberg-flink-streamlit-drawing.png)
 
 **Table of Contents**
 
 <!-- toc -->
-+ [1.0 Prerequisite](#10-prerequisite)
-+ [2.0 Power up the Apache Flink Docker containers](#20-power-up-the-apache-flink-docker-containers)
-+ [3.0 Supercharge Your Streamlit Visualizations](#30-supercharge-your-streamlit-visualizations)
-    - [3.1 Special Mention](#31-special-mention)
++ [1.0 Power up the Apache Flink Docker containers](#10-power-up-the-apache-flink-docker-containers)
++ [2.0 Supercharge Your Streamlit Visualizations](#20-supercharge-your-streamlit-visualizations)
+    - [2.1 Special Mention](#21-special-mention)
++ [3.0 Local Integration: How This App Harnesses Apache Flink](#30-local-integration-how-this-app-harnesses-apache-flink)
 + [4.0 Resources](#40-resources)
 <!-- tocstop -->
 
-
-## 1.0 Prerequisite
-Start by running the Java-based Flink application [`DataGeneratorApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/java/README.md) to kickstart the data pipeline. This app powers up your Kafka topics—`airline.skyone` and `airline.sunset`—by generating sample records that fuel the rest of the process. Once the data flows into Kafka, launch the [`FlightImporterApp`](https://github.com/j3-signalroom/apache_flink-kickstarter/blob/main/python/README.md) Flink application. This crucial step reads the enriched data from Kafka and writes it into the `apache_kickstarter.airlines.flight` Apache Iceberg table, seamlessly preparing your data for advanced analytics and insight generation. Get ready to see the magic of Flink in action!
-
-![datageneratorapp-flightimporterapp](.blog/images/datageneratorapp-flightimporterapp.png)
-
-## 2.0 Power up the Apache Flink Docker containers
+## 1.0 Power up the Apache Flink Docker containers
 
 > **Prerequisite**
 > 
@@ -49,7 +47,7 @@ scripts/run-flink-locally.sh on --profile=<AWS_SSO_PROFILE_NAME>
 
 To learn more about this script, click [here](.blog/run-flink-locally-script-explanation.md).
 
-## 3.0 Supercharge Your Streamlit Visualizations
+## 2.0 Supercharge Your Streamlit Visualizations
 To access the Flink JobManager (`supercharge_streamlit-apache_flink-jobmanager-1`) container, open the interactive shell by running:
 
 ```bash
@@ -79,7 +77,7 @@ Open your host web browser, enter the local URL, `localhost:8501`, and in a few 
 > 
 > _**---J3**_
 
-### 3.1 Special Mention
+### 2.1 Special Mention
 Before we move on, take a moment to notice something new right before the `flink run` command—the `uv` run comes right before it! What is `uv`, you ask? Well, it's an incredibly fast Python package installer and dependency resolver, written in Rust, and designed to seamlessly replace `pip` and pip-tools in your workflows. By prefixing uv run to a command, you're ensuring that the command runs in an optimal Python environment.
 
 Now, let's break down the magic behind uv run:
@@ -92,6 +90,13 @@ So what does this mean when we put `uv` run before `flink run`? It means uv take
 Curious to learn more about Astral's `uv`? Check these out:
 - Documentation: Learn about [uv](https://docs.astral.sh/uv/).
 - Video: [uv IS the Future of Python Packing!](https://www.youtube.com/watch?v=8UuW8o4bHbw).
+
+## 3.0 Local Integration: How This App Harnesses Apache Flink
+This [`app.py`](src/supercharge_streamlit/app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the app.py script. Running the Flink job using the same Python process as the Streamlit app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
+
+However, a more advanced setup is recommended for production environments where scalability is critical. Running Flink jobs in a separate process and enabling communication through Kafka or a REST API provides greater scalability, albeit at the cost of added complexity.
+
+The simplicity of this app’s current approach makes it perfect for prototyping and development while offering a foundation to explore more sophisticated integration methods as your requirements grow.
 
 ## 4.0 Resources
 
