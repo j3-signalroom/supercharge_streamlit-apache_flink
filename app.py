@@ -114,7 +114,7 @@ def main(args):
 
     #
     # Set timeout to 60 seconds
-    # The maximum amount of time a checkpoint attempt can take before being discarded.
+    # The maximum amount of time a checkpoint attempt can take before being discarded
     #
     env.get_checkpoint_config().set_checkpoint_timeout(60000)
 
