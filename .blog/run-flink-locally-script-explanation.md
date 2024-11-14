@@ -2,7 +2,7 @@ This script is used to manage a local Apache Flink environment using Docker Comp
 
 ### Script Overview
 - The script allows you to **start** or **stop** a Flink environment locally using Docker Compose.
-- It takes several arguments: `on` or `off`, AWS SSO profile, chip architecture (amd64 or arm64), and optionally an S3 bucket name.
+- It takes several arguments: `on` or `off`, AWS SSO profile, chip architecture (amd64 or arm64), and an S3 bucket name.
 - The script uses **AWS SSO** credentials to configure the AWS environment, which are then passed to Docker containers.
 
 ### Key Features Explained
@@ -12,10 +12,9 @@ This script is used to manage a local Apache Flink environment using Docker Comp
    - If the argument is incorrect, an error message is displayed with proper usage information.
 
 2. **Argument Parsing**:
-   - Parses optional arguments such as:
-     - `--profile`: AWS SSO profile name.
-     - `--chip`: Specifies the target architecture (amd64 or arm64).
-     - `--aws-s3-bucket`: Optionally specifies the AWS S3 bucket name.
+    - `--profile`: AWS SSO profile name.
+    - `--chip`: Specifies the target architecture (amd64 or arm64).
+    - `--aws-s3-bucket`: Specifies the AWS S3 bucket name.
 
 3. **Validation Checks**:
    - Checks if required arguments (`--profile`, `--chip`, and `--aws-s3-bucket`) are provided.
