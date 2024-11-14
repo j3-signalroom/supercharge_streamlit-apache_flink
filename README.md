@@ -51,19 +51,19 @@ To learn more about this script, click [here](.blog/run-flink-locally-script-exp
 To access the Flink JobManager (`supercharge_streamlit-apache_flink-jobmanager-1`) container, open the interactive shell by running:
 
 ```bash
-docker exec -it -w /opt/flink/python_apps/src supercharge_streamlit-apache_flink-jobmanager-1 /bin/bash
+docker exec -it -w /opt/flink/python_apps supercharge_streamlit-apache_flink-jobmanager-1 /bin/bash
 ```
 
-Jump right into the container and take charge! You’ll have full control to run commands, explore the file system, and tackle any tasks you need. You’ll land directly in the `/opt/flink/python_apps/src` directory—this is the headquarters for the Python script in the repo.
+Jump right into the container and take charge! You’ll have full control to run commands, explore the file system, and tackle any tasks you need. You’ll land directly in the `/opt/flink/python_apps` directory—this is the headquarters for the Python script in the repo.
 
 To illustrate, I created a Streamlit script that queries the `apache_kickstarter.airlines.flight` Apache Iceberg Table, harnessing Flink SQL to extract valuable insights. These insights are then brought to life through a Streamlit dashboard, transforming raw data into an accessible, visual experience.
 
 Here you go, run this in the docker container terminal command line:
 
 ```bash
-uv run streamlit run supercharge_streamlit/app.py -- --aws-s3-bucket <AWS_S3_BUCKET> --aws-region <AWS_REGION_NAME>
+uv run streamlit run app.py -- --aws-s3-bucket <AWS_S3_BUCKET> --aws-region <AWS_REGION_NAME>
 ```
-> _Notice the extra `--` between streamlit run `supercharge_streamlit/app.py` and the actual script arguments.  This is necessary to pass arguments to the Streamlit script without causing conflicts with Streamlit's own CLI options._
+> _Notice the extra `--` between streamlit run `app.py` and the actual script arguments.  This is necessary to pass arguments to the Streamlit script without causing conflicts with Streamlit's own CLI options._
 
 When you run the script, for instance, it produces the following output:
 
@@ -92,7 +92,7 @@ Curious to learn more about Astral's `uv`? Check these out:
 - Video: [uv IS the Future of Python Packing!](https://www.youtube.com/watch?v=8UuW8o4bHbw).
 
 ## 3.0 Local Integration: How This App Harnesses Apache Flink
-This [`app.py`](src/supercharge_streamlit/app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the app.py script. Running the Flink job using the same Python process as the Streamlit app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
+This [`app.py`](app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the app.py script. Running the Flink job using the same Python process as the Streamlit app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
 
 However, a more advanced setup is recommended for production environments where scalability is critical. Running Flink jobs in a separate process and enabling communication through Kafka or a REST API provides greater scalability, albeit at the cost of added complexity.
 
