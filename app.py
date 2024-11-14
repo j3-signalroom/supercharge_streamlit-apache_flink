@@ -29,7 +29,8 @@ def load_data(_tbl_env: StreamTableEnvironment, database_name: str) -> Tuple[pd.
         Returns:
             Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]: is a tuple of Pandas DataFrames.
     """
-    # Get the number of flights per month by airline, year, and month
+    # --- Flink SQL to return the number of flights by airline, year, and month, and store the
+    # --- results in a Pandas DataFrame
     airline_monthly_flights_table = _tbl_env.sql_query(f"""
                                                         select 
                                                             airline,
@@ -50,7 +51,8 @@ def load_data(_tbl_env: StreamTableEnvironment, database_name: str) -> Tuple[pd.
                                                     """)
     df_airline_monthly_flights_table = airline_monthly_flights_table.to_pandas()
 
-    # Get the top airports with the most departures by airport, airline, year, and rank
+    # --- Flink SQL to return the top airports with the most departures by airport, airline, year,
+    # --- and rank, and store the results in a Pandas DataFrame
     ranked_airports_table = _tbl_env.sql_query(f"""
                                                 with cte_ranked as (
                                                     select
@@ -84,7 +86,7 @@ def load_data(_tbl_env: StreamTableEnvironment, database_name: str) -> Tuple[pd.
                                             """)
     df_ranked_airports_table = ranked_airports_table.to_pandas()
 
-    # Get the flight data by airline and year
+    # --- Flink SQL to return the flight data by year, and store the results in a Pandas DataFrame
     flight_table = _tbl_env.sql_query(f"""
                                       select 
                                         *, 
@@ -94,6 +96,7 @@ def load_data(_tbl_env: StreamTableEnvironment, database_name: str) -> Tuple[pd.
                                     """)
     df_flight_table = flight_table.to_pandas()
 
+    # --- Return the Pandas DataFrames
     return df_airline_monthly_flights_table, df_ranked_airports_table, df_flight_table
 
 
@@ -103,9 +106,6 @@ def main(args):
     Args:
         args (str): is the arguments passed to the script.
     """
-    # --- Set the page configuration to wide mode
-    st.set_page_config(layout="wide")
-
     # --- Create a blank Flink execution environment
     env = StreamExecutionEnvironment.get_execution_environment()
 
@@ -136,16 +136,20 @@ def main(args):
     # --- Load database
     load_database(tbl_env, catalog, "airlines")
 
-    # Print the current database name
+    # --- Print the current database name
     print(f"Current database: {tbl_env.get_current_database()}")
 
-    # Load the data
+    # --- Load the data
     df_airline_monthly_flights_table, df_ranked_airports_table, df_flight_table = load_data(tbl_env, tbl_env.get_current_database())
 
+    # --- Set the page configuration to wide mode
+    st.set_page_config(layout="wide")
+
+    # --- The title and subtitle of the app
     st.title("Apache Flink Kickstarter Dashboard")
     st.write("This Streamlit application displays data from the Apache Iceberg table created by the DataGenerator and FlightImporter Flink Apps.")
 
-    # Create a dropdown boxes
+    # --- Create and fill in the two dropdown boxes used to filter data in the app
     selected_airline = st.selectbox(
         index=0, 
         label='Choose Airline:',
@@ -157,51 +161,43 @@ def main(args):
         options=df_flight_table['departure_year'].dropna().unique()
     )
 
+    # --- Container with two sections (columns) to display the bar chart and pie chart
     with st.container(border=True):    
         col1, col2 = st.columns(2)
 
         with col1:
+            # --- Bar chart flight count by departure month for the selected airline and year
             st.header("Airline Flights")
-
-            # Bar chart
             st.title(f"{selected_airline} Monthly Flights in {selected_departure_year}")
             st.bar_chart(data=df_airline_monthly_flights_table[(df_airline_monthly_flights_table['departure_year'] == selected_departure_year) & (df_airline_monthly_flights_table['airline'] == selected_airline)] ,
                          x="departure_month_abbr",
                          y="flight_count",
                          x_label="Departure Month",
                          y_label="Number of Flights")
-                        
-            # Display the description of the bar chart
             st.write(f"This bar chart displays the number of {selected_airline} monthly flights in {selected_departure_year}.  The x-axis represents the month and the y-axis represents the number of flights.")
 
         with col2:
+            # --- Pie chart top airports by departures for the selected airline and year
+            # --- Create a slider to select the number of airports to rank
             st.header("Airport Ranking")
             st.title(f"Top {selected_departure_year} {selected_airline} Airports")
-
-            # Filter the ranked airports table
             df_filter_table = df_ranked_airports_table[(df_ranked_airports_table['airline'] == selected_airline) & (df_ranked_airports_table['departure_year'] == selected_departure_year)]
-
-            # Create a slider to select the number of airports to rank
             rank_value = st.slider(label="Ranking:",
                                    min_value=3,
                                    max_value=df_filter_table['row_num'].max(), 
                                    step=1,
                                    value=3)
-
-            # Pie chart
             fig = px.pie(df_filter_table[(df_filter_table['row_num'] <= rank_value)], 
                          values='flight_count', 
                          names='departure_airport_code', 
                          title=f"Top {rank_value} based on departures",)
             st.plotly_chart(fig, theme=None)
-
-            # Display the description of the pie chart
             st.write(f"This pie chart displays the top {rank_value} airports with the most departures for {selected_airline}.  The chart shows the percentage of flights departing from each of the top {rank_value} airports.")
 
+    # --- Container with a section to display the flight data for the selected airline and year
     with st.container(border=True):
+        # --- Grid showing all the flight data for the selected airline and year
         st.header(f"{selected_departure_year} {selected_airline} Flight Data")
-
-        # Create grid options with only specific columns
         df_filter_table = df_flight_table[(df_flight_table['departure_year'] == selected_departure_year) & (df_flight_table['airline'] == selected_airline)]
         AgGrid(
             df_filter_table,
@@ -209,8 +205,6 @@ def main(args):
             height=300, 
             width='100%'
         )
-
-        # Display the description of the table
         st.write("This table displays the flight data from the Apache Iceberg table.  The table shows the email address, departure time, departure airport code, arrival time, arrival airport code, flight number, confirmation code, airline, and departure year for each flight.")
 
 
