@@ -3,7 +3,7 @@ After you have all your fun running the Java-based Flink application [`DataGene
 
 ![datageneratorapp-flightimporterapp](.blog/images/datageneratorapp-flightimporterapp.png)
 
-Get ready to see the magic of Flink in action! Now, it's time to share those insights with the world! One fantastic way to do that is with [Streamlit](https://streamlit.io/), which allows you to easily create interactive visualizations. Streamlit is intuitive, powerful, and designed with Python developers in mind, making it a breeze to turn raw data into captivating dashboards. 😉  
+Get ready to see the magic of Flink in action! Now, it's time to share those insights with the world! One fantastic way to do that is with [`Streamlit`](https://streamlit.io/), which allows you to easily create interactive visualizations. Streamlit is intuitive, powerful, and designed with Python developers in mind, making it a breeze to turn raw data into captivating dashboards. 😉  
 
 ![iceberg-flink-streamlit-drawing](.blog/images/iceberg-flink-streamlit-drawing.png)
 
@@ -88,11 +88,11 @@ Now, let's break down the magic behind `uv` run:
 So what does this mean when we put `uv` run before `flink run`? It means `uv` takes care of all the setup—fast and seamless—right on the Flink cluster. If you think AI/ML is magic, the work the folks at Astral have done with uv is pure wizardry!
 
 Curious to learn more about Astral's `uv`? Check these out:
-- Documentation: Learn about [uv](https://docs.astral.sh/uv/).
-- Video: [uv IS the Future of Python Packing!](https://www.youtube.com/watch?v=8UuW8o4bHbw).
+- Documentation: Learn about [`uv`](https://docs.astral.sh/uv/).
+- Video: [`uv` IS THE FUTURE OF PYTHON PACKING!](https://www.youtube.com/watch?v=8UuW8o4bHbw).
 
 ## 3.0 Local Integration: How This App Harnesses Apache Flink
-This [`app.py`](app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the app.py script. Running the Flink job using the same Python process as the Streamlit app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
+This [`app.py`](app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the [`app.py`](app.py) script. Running the Flink job using the same Python process as the [`Streamlit`](https://streamlit.io/) app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
 
 However, a more advanced setup is recommended for production environments where scalability is critical. Running Flink jobs in a separate process and enabling communication through Kafka or a REST API provides greater scalability, albeit at the cost of added complexity.
 
