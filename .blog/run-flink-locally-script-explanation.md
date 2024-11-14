@@ -50,4 +50,4 @@ scripts/run-flink-locally.sh <on | off> --profile=<AWS_SSO_PROFILE_NAME> --chip=
 - It includes AWS integration through SSO.
 - The `.env` file generated during execution ensures that all necessary AWS credentials are passed securely to the Docker Compose setup.
 
-This script is valuable for setting up and managing a local Flink environment that interacts with AWS resources and simplifies configuring different aspects like the execution architecture and language.
+This script is valuable for setting up and managing a local Flink environment that interacts with AWS resources and simplifies configuring the execution architecture (i.e., Mac M chip or non-Mac M chip machine).
