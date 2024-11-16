@@ -106,6 +106,10 @@ def main(args):
     Args:
         args (str): is the arguments passed to the script.
     """
+    # --- Set the page configuration to wide mode
+    # --- MUST BE CALLED AT THE BEGINNING OF THE SCRIPT, OTHERWISE AN EXCPETION WILL BE RAISED
+    st.set_page_config(layout="wide")
+
     # --- Create a blank Flink execution environment
     env = StreamExecutionEnvironment.get_execution_environment()
 
@@ -141,9 +145,6 @@ def main(args):
 
     # --- Load the data
     df_airline_monthly_flights_table, df_ranked_airports_table, df_flight_table = load_data(tbl_env, tbl_env.get_current_database())
-
-    # --- Set the page configuration to wide mode
-    st.set_page_config(layout="wide")
 
     # --- The title and subtitle of the app
     st.title("Apache Flink Kickstarter Dashboard")
