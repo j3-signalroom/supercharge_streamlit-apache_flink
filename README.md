@@ -85,7 +85,7 @@ Now, let's go a little deeper into the magic behind `uv` run:
 - If used in a project directory, `uv` will automatically create or update the project environment before running the command.
 - Outside of a project, if there's a virtual environment present in your current directory (or any parent directory), `uv` runs the command in that environment. If no environment is found, it uses the interpreter's environment.
 
-So what does this mean when we put `uv` run before `flink run`? It means `uv` takes care of all the setup—fast and seamless—right on the Flink cluster. If you think AI/ML is magic, the work the folks at Astral have done with uv is pure wizardry!
+So what does this mean when we put `uv` run before `streamlit run`? It means `uv` takes care of all the setup—fast and seamless—right on the Flink cluster. If you think AI/ML is magic, the work the folks at Astral have done with uv is pure wizardry!
 
 Curious to learn more about [Astral](https://astral.sh/)'s `uv`? Check these out:
 - Documentation: Learn about [`uv`](https://docs.astral.sh/uv/).
