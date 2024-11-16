@@ -87,14 +87,14 @@ Now, let's break down the magic behind `uv` run:
 
 So what does this mean when we put `uv` run before `flink run`? It means `uv` takes care of all the setup—fast and seamless—right on the Flink cluster. If you think AI/ML is magic, the work the folks at Astral have done with uv is pure wizardry!
 
-Curious to learn more about Astral's `uv`? Check these out:
+Curious to learn more about [Astral](https://astral.sh/)'s `uv`? Check these out:
 - Documentation: Learn about [`uv`](https://docs.astral.sh/uv/).
 - Video: [`uv` IS THE FUTURE OF PYTHON PACKING!](https://www.youtube.com/watch?v=8UuW8o4bHbw).
 
 ## 3.0 Local Integration: How This App Harnesses Apache Flink
 This [`app.py`](app.py) Python script streamlines Apache Flink integration by leveraging PyFlink directly in the [`app.py`](app.py) script. Running the Flink job using the same Python process as the [`Streamlit`](https://streamlit.io/) app offers an intuitive setup for local testing and debugging. It's an ideal solution for quickly iterating on data processing logic without additional infrastructure.
 
-However, a more advanced setup is recommended for production environments where scalability is critical. Running Flink jobs in a separate process and enabling communication through Kafka or a REST API provides greater scalability, albeit at the cost of added complexity.
+_However, a more advanced setup is recommended for production environments where scalability is critical. Running Flink jobs in a separate process and enabling communication through Kafka or a REST API provides greater scalability, albeit at the cost of added complexity._
 
 The simplicity of this app’s current approach makes it perfect for prototyping and development while offering a foundation to explore more sophisticated integration methods as your requirements grow.
 
