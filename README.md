@@ -26,21 +26,21 @@ Get ready to see the magic of Flink in action! Now, it's time to share those ins
 > brew install aws2-wrap
 > ````
 >
-> If you do not, make sure you have Python3.x installed on your machine, and run this command from your Terminal:
+> If you are not using a Mac, make sure you have Python3.x installed on your machine, and run this command from your Terminal:
 > ```bash
 > pip install aws2-wrap
 > ```
 
-This section guides you through the local setup (on one machine but in separate containers) of the Apache Flink cluster in Session mode using Docker containers with support for Apache Iceberg.  Run the `bash` script below to start the Apache Flink cluster in Session Mode on your machine:
+This section guides you through the local setup (on one machine but in separate containers) of the Apache Flink cluster in [Session mode](https://github.com/j3-signalroom/j3-techstack-lexicon/blob/main/apache-flink-glossary.md#flink-session-mode) using Docker containers with support for Apache Iceberg.  Run the `bash` script below to start the Apache Flink cluster in Session Mode on your machine:
 
 ```bash
-scripts/run-flink-locally.sh on --profile=<AWS_SSO_PROFILE_NAME>
-                                --chip=<amd64 | arm64>
-                                --aws-s3-bucket=<AWS_S3_BUCKET_NAME>
+scripts/run-flink-locally.sh <DOCKER_SWITCH> --profile=<AWS_SSO_PROFILE_NAME>
+                                             --chip=<amd64 | arm64>
+                                             --aws-s3-bucket=<AWS_S3_BUCKET_NAME>
 ```
 > Argument placeholder|Replace with
 > -|-
-> `<ACTIVATE_DOCKER_CONTAINER>`|`on` to turn on Flink locally, otherwise `off` to turn Flink off.
+> `<DOCKER_SWITCH>`|`on` to start up your very own local Apache Cluster running in Docker containers, otherwise `off` to stop the Docker containers.
 > `<AWS_SSO_PROFILE_NAME>`|your AWS SSO profile name for your AWS infrastructue that host your AWS Secrets Manager.
 > `<CHIP>`|if you are running on a Mac with M1, M2, or M3 chip, use `arm64`.  Otherwise, use `amd64`.
 > `<AWS_S3_BUCKET_NAME>`|specify the name of the AWS S3 bucket used to store Apache Iceberg files.
