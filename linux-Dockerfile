@@ -118,9 +118,5 @@ COPY . /opt/flink/python_apps/
 WORKDIR /opt/flink/python_apps
 RUN uv sync --frozen
 
-# Zip Python files
-WORKDIR /opt/flink/python_apps/src/supercharge_streamlit
-RUN zip -r python_files.zip * -x '__pycache__/*' -x 'helper/__pycache__/*'
-
 # Set the entrypoint to Flink's entrypoint script
 CMD ["./bin/start-cluster.sh"]

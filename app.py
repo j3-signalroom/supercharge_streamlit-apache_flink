@@ -16,7 +16,7 @@ __email__      = "j3@thej3.com"
 __status__     = "dev"
 
 
-@st.cache_data
+@st.cache_data(ttl=900, show_spinner="Loading Airline Flight Data...")
 def load_data(_tbl_env: StreamTableEnvironment, database_name: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """This function creates and loads from multiple query data results
     from the `airlines.flight` Apache Iceberg Table into cache and then
