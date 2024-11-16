@@ -12,7 +12,7 @@ Get ready to see the magic of Flink in action! Now, it's time to share those ins
 <!-- toc -->
 + [1.0 Power up the Apache Flink Docker containers](#10-power-up-the-apache-flink-docker-containers)
 + [2.0 Supercharge Your Streamlit Visualizations](#20-supercharge-your-streamlit-visualizations)
-    - [2.1 Did you notice we prepended `uv run` before `streamlit run`?](#21-did-you-notice-we-prepended-uv-run-before-streamlit-run)
+    - [2.1 Did you notice we prepended `uv run` to `streamlit run`?](#21-did-you-notice-we-prepended-uv-run-to-streamlit-run)
 + [3.0 Local Integration: How This App Harnesses Apache Flink](#30-local-integration-how-this-app-harnesses-apache-flink)
 + [4.0 Resources](#40-resources)
 <!-- tocstop -->
@@ -77,8 +77,8 @@ Open your host web browser, enter the local URL, `localhost:8501`, and in a few 
 > 
 > _**---J3**_
 
-### 2.1 Did you notice we prepended `uv run` before `streamlit run`?
-You maybe asking yourself why.  Well, it's an incredibly fast Python package installer and dependency resolver, written in [**Rust**](https://github.blog/developer-skills/programming-languages-and-frameworks/why-rust-is-the-most-admired-language-among-developers/), and designed to seamlessly replace `pip`, `pipx`, `poetry`, `pyenv`, `twine`, `virtualenv`, and more in your workflows. By prefixing `uv run` to a command, you're ensuring that the command runs in an optimal Python environment.
+### 2.1 Did you notice we prepended `uv run` to `streamlit run`?
+You maybe asking yourself why.  Well, `uv` is an incredibly fast Python package installer and dependency resolver, written in [**Rust**](https://github.blog/developer-skills/programming-languages-and-frameworks/why-rust-is-the-most-admired-language-among-developers/), and designed to seamlessly replace `pip`, `pipx`, `poetry`, `pyenv`, `twine`, `virtualenv`, and more in your workflows. By prefixing `uv run` to a command, you're ensuring that the command runs in an optimal Python environment.
 
 Now, let's go a little deeper into the magic behind `uv` run:
 - When you use it with a file ending in `.py` or an HTTP(S) URL, `uv` treats it as a script and runs it with a Python interpreter. In other words, `uv run file.py` is equivalent to `uv run python file.py`. If you're working with a URL, `uv` even downloads it temporarily to execute it. Any inline dependency metadata is installed into an isolated, temporary environment—meaning zero leftover mess! When used with `-`, the input will be read from `stdin`, and treated as a Python script.
