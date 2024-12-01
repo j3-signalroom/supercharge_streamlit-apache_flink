@@ -1,11 +1,11 @@
 [project]
 name = "supercharge_streamlit"
-version = "0.01.00.000"
+version = "0.05.00.000"
 description = "Supercharge Streamlit"
 readme = "README.md"
 requires-python = "~=3.11.9"
 dependencies = [
-    "apache-flink==1.19.1",
+    "apache-flink==1.20.0",
     "boto3>=1.35.36",
     "botocore>=1.35.36",
     "confluent-kafka==2.6.0",
